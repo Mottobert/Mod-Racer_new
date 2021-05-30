@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: a835e4ca58fea48cf807e840a0a6c899
+  - enabled: 1
+    path: Assets/Scenes/QuickConnect.unity
+    guid: 90c7a65baa30c4eeda7f21450762dd08
+  - enabled: 1
+    path: Assets/Scenes/CustomMatchmaking.unity
+    guid: 3614397101873418d897eae199455027
+  - enabled: 1
+    path: Assets/Scenes/MultiplayerScene.unity
+    guid: 5f54ebff0ff3a40cdb5f5ae3e46d6dc4
+  - enabled: 1
+    path: Assets/Scenes/ChangeCar.unity
+    guid: f43c8b1c738654f389727154363efc6e
+  - enabled: 0
+    path: Assets/Scenes/Game.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: ef7a1e07a33b746578b4cd3a30de6b08, type: 2}
