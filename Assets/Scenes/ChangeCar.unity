@@ -709,9 +709,9 @@ RectTransform:
   m_Father: {fileID: 1068934883}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -363, y: -0.99998474}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 55, y: 0}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &253709792
@@ -2255,10 +2255,10 @@ RectTransform:
   m_Children:
   - {fileID: 1736053205}
   - {fileID: 1600190272}
-  - {fileID: 1889151670}
-  - {fileID: 253709791}
-  - {fileID: 1089823895}
   - {fileID: 1883206463}
+  - {fileID: 253709791}
+  - {fileID: 1889151670}
+  - {fileID: 1089823895}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2285,7 +2285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1089823895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ RectTransform:
   m_Children:
   - {fileID: 1449659234}
   m_Father: {fileID: 1068934883}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3398,7 +3398,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 810, y: 600}
+  m_SizeDelta: {x: 980.75, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736053206
 MonoBehaviour:
@@ -3659,11 +3659,11 @@ RectTransform:
   m_Children:
   - {fileID: 2086488424}
   m_Father: {fileID: 1068934883}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -365, y: 203}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 55, y: -40}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1883206464
@@ -3805,11 +3805,11 @@ RectTransform:
   m_Children:
   - {fileID: 1872862359}
   m_Father: {fileID: 1068934883}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 362, y: -1}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -55, y: 0}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889151671
@@ -4396,7 +4396,7 @@ GameObject:
   - component: {fileID: 808589640079251813}
   m_Layer: 0
   m_Name: smart
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4414,7 +4414,7 @@ GameObject:
   - component: {fileID: 5898503430270942653}
   m_Layer: 0
   m_Name: van
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4432,7 +4432,7 @@ GameObject:
   - component: {fileID: 2481683772771762528}
   m_Layer: 0
   m_Name: multivan
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4723,7 +4723,7 @@ GameObject:
   - component: {fileID: 6592459514675736447}
   m_Layer: 0
   m_Name: hedgeback
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4803,7 +4803,7 @@ GameObject:
   - component: {fileID: 4788053727924239198}
   m_Layer: 0
   m_Name: normal
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4989,7 +4989,7 @@ GameObject:
   - component: {fileID: 8784197772992092651}
   m_Layer: 0
   m_Name: limusin
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5107,7 +5107,7 @@ GameObject:
   - component: {fileID: 10364488715426734}
   m_Layer: 0
   m_Name: pickUp
-  m_TagString: Vehicle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,6 +13,7 @@ TagManager:
   - SpawnColliderChecker
   - Vehicle
   - AllCars
+  - Mod
   layers:
   - Default
   - TransparentFX

@@ -38,6 +38,7 @@ public class CarSelectorController : MonoBehaviour
             carPointer = 0;
         }
         SetActiveCar(carPointer);
+        SaveCarConfiguration();
     }
 
     public void PreviousCar()
@@ -52,6 +53,7 @@ public class CarSelectorController : MonoBehaviour
             carPointer = Children.Count - 1;
         }
         SetActiveCar(carPointer);
+        SaveCarConfiguration();
     }
 
     public void SetActiveCar(int index)
