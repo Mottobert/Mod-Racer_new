@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PhotonPlayer : MonoBehaviour
 {
-    private PhotonView PV;
+    public PhotonView PV;
     private GameObject myAvatar;
     private GameObject myBall;
     [SerializeField]

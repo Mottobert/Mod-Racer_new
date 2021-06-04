@@ -51,34 +51,7 @@ public class Player : MonoBehaviour
             UpdateEnergyLabel();
             UpdatePlayerNameLabel();
 
-            //FindChild(transform, "InputController").SetActive(true);
             carController = GetComponent<CarController>();
-
-            //gameObject.GetComponent<MeshFilter>().mesh = FindChild(allCars.transform, PlayerPrefs.GetInt("SelectedCarIndex")).GetComponent<MeshFilter>().sharedMesh;
-            //
-            //if(PlayerPrefs.GetInt("SelectedCarIndex") == 6)
-            //{
-            //    wheelFrontLeft.transform.position = new Vector3(wheelFrontLeft.transform.position.x, wheelFrontLeft.transform.position.y, wheelPositionFrontNarrow.position.z);
-            //    wheelFrontRight.transform.position = new Vector3(wheelFrontRight.transform.position.x, wheelFrontRight.transform.position.y, wheelPositionFrontNarrow.position.z);
-            //    wheelBackLeft.transform.position = new Vector3(wheelBackLeft.transform.position.x, wheelBackLeft.transform.position.y, wheelPositionBackNarrow.position.z);
-            //    wheelBackRight.transform.position = new Vector3(wheelBackRight.transform.position.x, wheelBackRight.transform.position.y, wheelPositionBackNarrow.position.z);
-            //}
-            //
-            //if (PlayerPrefs.GetInt("SelectedCarIndex") == 2 || PlayerPrefs.GetInt("SelectedCarIndex") == 8)
-            //{
-            //    wheelFrontLeft.transform.position = new Vector3(wheelFrontLeft.transform.position.x, wheelFrontLeft.transform.position.y, wheelPositionFrontWide.position.z);
-            //    wheelFrontRight.transform.position = new Vector3(wheelFrontRight.transform.position.x, wheelFrontRight.transform.position.y, wheelPositionFrontWide.position.z);
-            //    wheelBackLeft.transform.position = new Vector3(wheelBackLeft.transform.position.x, wheelBackLeft.transform.position.y, wheelPositionBackWide.position.z);
-            //    wheelBackRight.transform.position = new Vector3(wheelBackRight.transform.position.x, wheelBackRight.transform.position.y, wheelPositionBackWide.position.z);
-            //}
-
-            //if (PlayerPrefs.GetInt("SelectedCarIndex") == 9)
-            //{
-            //    wheelFrontLeft.transform.position = new Vector3(wheelFrontLeft.transform.position.x, wheelFrontLeft.transform.position.y, wheelPositionFrontNarrow.position.z);
-            //    wheelFrontRight.transform.position = new Vector3(wheelFrontRight.transform.position.x, wheelFrontRight.transform.position.y, wheelPositionFrontNarrow.position.z);
-            //    wheelBackLeft.transform.position = new Vector3(wheelBackLeft.transform.position.x, wheelBackLeft.transform.position.y, wheelPositionBackNarrow.position.z);
-            //    wheelBackRight.transform.position = new Vector3(wheelBackRight.transform.position.x, wheelBackRight.transform.position.y, wheelPositionBackNarrow.position.z);
-            //}
         }
     }
 

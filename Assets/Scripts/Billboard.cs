@@ -24,13 +24,13 @@ public class Billboard : MonoBehaviour
     private void SelectPlayerCamera()
     {
         GameObject[] photonPlayers = GameObject.FindGameObjectsWithTag("PhotonPlayer");
-        
+
         //Debug.Log(photonPlayers.Length);
         //Debug.Log(photonPlayers[0].transform.GetChild(0).gameObject.activeInHierarchy);
 
         foreach (GameObject c in photonPlayers)
         {
-            if (c.transform.GetChild(0).gameObject.activeInHierarchy)
+            if (c.transform.GetComponent<PhotonPlayer>().PV.IsMine)
             {
                 mainCameraTransform = c.transform.GetChild(0).transform;
             }

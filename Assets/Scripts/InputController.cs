@@ -65,6 +65,22 @@ public class InputController : MonoBehaviour
     {
         playerCamera.gameObject.SetActive(true);
         canvasInterface.gameObject.SetActive(true);
+
+        //DeleteAllOtherCameras();
+    }
+
+    private void DeleteAllOtherCameras()
+    {
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
+
+        foreach(GameObject c in cameras)
+        {
+            if (!PV.IsMine)
+            {
+                Debug.Log(c);
+                Destroy(c);
+            }
+        }
     }
 
     void FixedUpdate()
