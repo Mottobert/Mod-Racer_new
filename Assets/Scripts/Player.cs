@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public InputController inputController;
 
     [SerializeField]
-    private PhotonView PV;
+    public PhotonView PV;
 
     public int energy;
     [SerializeField]
@@ -21,6 +21,14 @@ public class Player : MonoBehaviour
     private Text playerNameLabel;
     public string playerName;
 
+    [SerializeField]
+    private Text resetTimerLabel;
+    private int resetTimer = 4;
+
+    [SerializeField]
+    private Text playerLifesLabel;
+    public int playerLifes = 3;
+
     public GameObject ball;
 
     public GameObject ballSpawn;
@@ -31,15 +39,7 @@ public class Player : MonoBehaviour
 
     public GameObject allCars;
 
-    public GameObject wheelFrontLeft;
-    public GameObject wheelFrontRight;
-    public GameObject wheelBackLeft;
-    public GameObject wheelBackRight;
-
-    public Transform wheelPositionFrontNarrow;
-    public Transform wheelPositionBackNarrow;
-    public Transform wheelPositionFrontWide;
-    public Transform wheelPositionBackWide;
+    public UITargetController uiTargetController;
 
     void Start()
     {
@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
             playerName = PlayerPrefs.GetString("PlayerName");
             UpdateEnergyLabel();
             UpdatePlayerNameLabel();
+            UpdatePlayerLifesLabel();
 
             carController = GetComponent<CarController>();
         }
@@ -80,10 +81,36 @@ public class Player : MonoBehaviour
         playerNameLabel.text = playerName;
     }
 
+    public void UpdatePlayerLifesLabel()
+    {
+        playerLifesLabel.text = "Leben: " + playerLifes;
+    }
+
+    public void UpdatePlayerResetTimerLabel()
+    {
+        resetTimerLabel.text = "" + resetTimer;
+    }
+
     public void PlayerLostBall()
     {
-        playerLostLabel.text = "Du hast deinen Ball verloren!";
-        playerLostBall = true;
+        if(playerLifes > 1)
+        {
+            playerLostLabel.text = "Du hast deinen Ball verloren!";
+            playerLostBall = true;
+
+            playerLifes--;
+            UpdatePlayerLifesLabel();
+
+            ResetTimer();
+
+            //Invoke("ResetPlayerPositionWithBall", 3f);
+        } else if(playerLifes == 1)
+        {
+            playerLifes--;
+            UpdatePlayerLifesLabel();
+            playerLostLabel.text = "Du hast alle deine Leben verloren!";
+            DisablePlayer();
+        }
     }
 
     private GameObject FindChild(Transform parent, int index)
@@ -102,5 +129,55 @@ public class Player : MonoBehaviour
         inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(playerLostBall);
         carController.ResetVelocity();
         ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    public void ResetPlayerPositionWithBall()
+    {
+        bool restoreBall = false; 
+        inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(restoreBall);
+        carController.ResetVelocity();
+        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    private void ResetTimer()
+    {
+        if(resetTimer > 1)
+        {
+            DenyPlayerInputs();
+            resetTimer--;
+            UpdatePlayerResetTimerLabel();
+
+            Invoke("ResetTimer", 1f);
+        }
+        else if(resetTimer == 1)
+        {
+            ResetPlayerPositionWithBall();
+            resetTimer = 4;
+            resetTimerLabel.text = "";
+
+            playerLostLabel.text = "";
+            playerLostBall = false;
+            AllowPlayerInputs();
+        }
+    }
+
+    private void DenyPlayerInputs()
+    {
+        inputController.allowInputs = false;
+        inputController.ResetDirection();
+        inputController.ResetSteerInput();
+    }
+
+    private void AllowPlayerInputs()
+    {
+        inputController.allowInputs = true;
+    }
+
+    private void DisablePlayer()
+    {
+        DenyPlayerInputs();
+        carController.ResetVelocity();
+        inputController.ResetDirection();
+        inputController.ResetSteerInput();
     }
 }

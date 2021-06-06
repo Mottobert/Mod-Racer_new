@@ -40,6 +40,8 @@ public class InputController : MonoBehaviour
     private int touch = 1;
     private int controlMode;
 
+    public bool allowInputs = true;
+
     [SerializeField]
     public InputMaster controls;
 
@@ -169,7 +171,7 @@ public class InputController : MonoBehaviour
 
     public void Gas()
     {
-        if (PV.IsMine)
+        if (PV.IsMine && allowInputs)
         {
             //Debug.Log("Gas Pressed");
             direction = 1;
@@ -178,7 +180,7 @@ public class InputController : MonoBehaviour
 
     public void Reverse()
     {
-        if (PV.IsMine)
+        if (PV.IsMine && allowInputs)
         {
             //Debug.Log("Reverse Pressed");
             direction = -1;
@@ -191,6 +193,15 @@ public class InputController : MonoBehaviour
         {
             //Debug.Log("Reset");
             direction = 0;
+        }
+    }
+
+    public void ResetSteerInput()
+    {
+        if (PV.IsMine)
+        {
+            //Debug.Log("Reset");
+            SteerInput = 0;
         }
     }
 
@@ -212,7 +223,7 @@ public class InputController : MonoBehaviour
     {
         //Debug.Log("Movement");
         //Debug.Log(PV.Owner);
-        if (PV.IsMine)
+        if (PV.IsMine && allowInputs)
         {
             controlMode = keyboard;
             //Debug.Log("Movement");
@@ -224,25 +235,25 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void OnBomb() // Wird vom neuen Input System aufgerufen, wenn die left-shift Taste gedrückt wird
-    {
-        if (PV.IsMine)
-        {
-            player.GetComponent<BombThrow>().ThrowBomb();
-        }
-    }
-
-    public void OnDrop() // Wird vom neuen Input System aufgerufen, wenn die c Taste gedrückt wird
-    {
-        if (PV.IsMine)
-        {
-            player.GetComponent<MineDrop>().DropMine();
-        }
-    }
+    //public void OnBomb() // Wird vom neuen Input System aufgerufen, wenn die left-shift Taste gedrückt wird
+    //{
+    //    if (PV.IsMine)
+    //    {
+    //        player.GetComponent<BombThrow>().ThrowBomb();
+    //    }
+    //}
+    //
+    //public void OnDrop() // Wird vom neuen Input System aufgerufen, wenn die c Taste gedrückt wird
+    //{
+    //    if (PV.IsMine)
+    //    {
+    //        player.GetComponent<MineDrop>().DropMine();
+    //    }
+    //}
 
     private void TouchControl()
     {
-        if (PV.IsMine)
+        if (PV.IsMine && allowInputs)
         {
             //ThrottleInput = joystick.Direction.magnitude * direction;
             ThrottleInput = direction;

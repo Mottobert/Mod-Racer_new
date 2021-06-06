@@ -7,6 +7,8 @@ public class SpawnPoint : MonoBehaviour
     public bool isBlocked = false;
     public GameObject plane;
 
+    private int collisionCount = 0;
+
     private void Start()
     {
         plane.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
@@ -19,6 +21,7 @@ public class SpawnPoint : MonoBehaviour
             //Debug.Log(this.name + " Blocked");
             isBlocked = true;
             plane.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            collisionCount++;
         }
     }
 
@@ -26,9 +29,13 @@ public class SpawnPoint : MonoBehaviour
     {
         if (other.tag == "SpawnColliderChecker")
         {
-            //Debug.Log(this.name + " Not Blocked");
-            isBlocked = false;
-            plane.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            collisionCount--;
+            if(collisionCount == 0)
+            {
+                //Debug.Log(this.name + " Not Blocked");
+                isBlocked = false;
+                plane.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            }
         }
     }
 }

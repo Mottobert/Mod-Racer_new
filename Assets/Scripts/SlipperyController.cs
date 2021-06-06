@@ -14,7 +14,6 @@ public class SlipperyController : MonoBehaviour
     private float defaultAsymptoteSlip = 0.8f;
     private float defaultAsymptoteValue = 1.2f;
 
-
     private void SetWheelsExtremumSlip(float input)
     {
         WheelFrictionCurve tempFCright;

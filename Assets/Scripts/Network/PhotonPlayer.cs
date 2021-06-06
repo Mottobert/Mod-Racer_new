@@ -14,6 +14,21 @@ public class PhotonPlayer : MonoBehaviour
 
     private GameObject playerSpawnPositions;
 
+    private void Awake()
+    {
+        if (PlayerPrefs.GetString("Mod1") == null || PlayerPrefs.GetString("Mod1") == "")
+        {
+            PlayerPrefs.SetString("Mod1", "Bombe");
+        }
+
+        if (PlayerPrefs.GetString("Mod2") == null || PlayerPrefs.GetString("Mod2") == "")
+        {
+            PlayerPrefs.SetString("Mod2", "Schild");
+        }
+
+        //PlayerPrefs.DeleteAll();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +38,7 @@ public class PhotonPlayer : MonoBehaviour
 
         if (PV.IsMine)
         {
-            Invoke("SpawnPlayer", 0.1f);
+            Invoke("SpawnPlayer", 0.3f); // Changed
         }
     }
 

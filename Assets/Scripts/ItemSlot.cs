@@ -11,7 +11,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     void Awake()
     {
-        Debug.Log("PlayerPrefs bevor Awake " + modSlotName + " " + PlayerPrefs.GetString(modSlotName));
+        //Debug.Log("PlayerPrefs bevor Awake " + modSlotName + " " + PlayerPrefs.GetString(modSlotName));
         if (PlayerPrefs.GetString(modSlotName) == null || PlayerPrefs.GetString(modSlotName) == "") {
             if (modSlotName == "Mod1")
             {
@@ -26,8 +26,8 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     void Start()
     {
-        Debug.Log("PlayerPrefs nach Awake " + modSlotName + " " + PlayerPrefs.GetString(modSlotName));
-        Debug.Log(PlayerPrefs.GetString(modSlotName));
+        //Debug.Log("PlayerPrefs nach Awake " + modSlotName + " " + PlayerPrefs.GetString(modSlotName));
+        //Debug.Log(PlayerPrefs.GetString(modSlotName));
         if (PlayerPrefs.GetString(modSlotName) != null && PlayerPrefs.GetString(modSlotName) != "")
         {
             blocked = true;
@@ -37,7 +37,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop");
+        //Debug.Log("OnDrop");
         //Debug.Log(eventData.pointerDrag);
         if (eventData.pointerDrag != null)
         {

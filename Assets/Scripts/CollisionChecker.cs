@@ -26,6 +26,6 @@ public class CollisionChecker : MonoBehaviour
     
     private void DeleteEnergy(Collider collider)
     {
-        Destroy(collider.gameObject);
+        PhotonNetwork.Destroy(collider.gameObject);
     }
 }

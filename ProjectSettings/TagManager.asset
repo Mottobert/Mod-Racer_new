@@ -14,6 +14,7 @@ TagManager:
   - Vehicle
   - AllCars
   - Mod
+  - UIController
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Photon.Pun;
 using UnityEngine;
 
 public class EnergyBallSpawner : MonoBehaviour
@@ -33,7 +35,8 @@ public class EnergyBallSpawner : MonoBehaviour
 
     private void PlaceEnergyBall(int index)
     {
-        GameObject Ball = Instantiate(energyBall, spawners[index].transform.position, spawners[index].transform.rotation);
+        GameObject Ball = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "EnergyBall"), spawners[index].transform.position, spawners[index].transform.rotation);
+
         Ball.GetComponent<EnergyBallOnDelete>().spawner = spawners[index];
         Ball.GetComponent<EnergyBallOnDelete>().spawners = this.gameObject;
     }
