@@ -9,9 +9,13 @@ public class EnergyBallSpawner : MonoBehaviour
     public GameObject energyBall;
     private List<GameObject> spawners = new List<GameObject>();
 
+    private PhotonView PV;
+
     // Start is called before the first frame update
     void Start()
     {
+        PV = GetComponent<PhotonView>();
+
         GameObject[] locations = GameObject.FindGameObjectsWithTag("EnergyBallSpawner");
 
         foreach(GameObject x in locations)

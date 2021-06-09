@@ -10,7 +10,7 @@ public class CollisionChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "EnergyBall" && PV.IsMine && isReady)
+        if(other.tag == "EnergyBall" && isReady)
         {
             isReady = false;
             this.GetComponentInParent<Player>().IncreaseEnergy();

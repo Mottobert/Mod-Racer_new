@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Photon.Pun;
 
 public class EnergyBallOnDelete : MonoBehaviour
 {
