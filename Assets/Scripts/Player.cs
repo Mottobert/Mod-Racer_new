@@ -54,6 +54,12 @@ public class Player : MonoBehaviour
 
             carController = GetComponent<CarController>();
         }
+
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    Debug.Log(PV.Owner);
+        //    GameObject.Find("EnergyBallSpawnerPoints").GetComponent<EnergyBallSpawner>().PlaceRandomEnergyBalls(3);
+        //}
     }
 
     void Update()
@@ -133,10 +139,13 @@ public class Player : MonoBehaviour
 
     public void ResetPlayerPositionWithBall()
     {
-        bool restoreBall = false; 
-        inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(restoreBall);
-        carController.ResetVelocity();
-        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        bool restoreBall = false;
+        if (inputController.playerCamera)
+        {
+            inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(restoreBall);
+            carController.ResetVelocity();
+            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
 
     private void ResetTimer()
@@ -157,13 +166,18 @@ public class Player : MonoBehaviour
 
             playerLostLabel.text = "";
             playerLostBall = false;
-            AllowPlayerInputs();
+            Invoke("AllowPlayerInputs", 0.1f);
         }
     }
 
     private void DenyPlayerInputs()
     {
         inputController.allowInputs = false;
+        Invoke("ResetPlayerInputs", 0.2f);
+    }
+
+    private void ResetPlayerInputs()
+    {
         inputController.ResetDirection();
         inputController.ResetSteerInput();
     }

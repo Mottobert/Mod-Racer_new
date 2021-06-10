@@ -23,7 +23,10 @@ public class EnergyBallSpawner : MonoBehaviour
             spawners.Add(x);
         }
 
-        PlaceRandomEnergyBalls(3);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PlaceRandomEnergyBalls(3);
+        }
     }
 
     public void PlaceRandomEnergyBalls(int number)

@@ -193,6 +193,7 @@ public class InputController : MonoBehaviour
         {
             //Debug.Log("Reset");
             direction = 0;
+            ThrottleInput = 0;
         }
     }
 

@@ -13,6 +13,8 @@ public class QuickStartLobbyController : MonoBehaviourPunCallbacks
     [SerializeField]
     private int roomSize;
 
+    private int quickStartSpawnMode = 1;
+
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.SendRate = 30; // Changed
@@ -23,6 +25,7 @@ public class QuickStartLobbyController : MonoBehaviourPunCallbacks
 
     public void QuickStart()
     {
+        PlayerPrefs.SetInt("SpawnMode", quickStartSpawnMode);
         quickStartButton.SetActive(false);
         quickCancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();

@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,9 @@ using UnityEngine;
 public class PhotonPlayer : MonoBehaviour
 {
     public PhotonView PV;
+    private Photon.Realtime.Player[] allPlayers;
+    private int myNumberInRoom = 0;
+
     private GameObject myAvatar;
     private GameObject myBall;
     [SerializeField]
@@ -36,15 +40,59 @@ public class PhotonPlayer : MonoBehaviour
 
         PV = GetComponent<PhotonView>();
 
+        allPlayers = PhotonNetwork.PlayerList;
+
+        Debug.Log(PV.ViewID);
+
+        string viewIDString = "" + PV.ViewID;
+        string firstDigitOfViewID = viewIDString.Substring(0, 1);
+        int firstDigitOfViewIDInt = int.Parse(firstDigitOfViewID) - 1;
+
+        myNumberInRoom = firstDigitOfViewIDInt;
+
+        Debug.Log(firstDigitOfViewIDInt);
+
+        //foreach (Photon.Realtime.Player p in allPlayers)
+        //{
+        //    if(p != PhotonNetwork.LocalPlayer)
+        //    {
+        //        myNumberInRoom++;
+        //        Debug.Log(myNumberInRoom);
+        //        Debug.Log(p);
+        //    }
+        //}
+
         if (PV.IsMine)
         {
-            Invoke("SpawnPlayer", 0.3f); // Changed
+            Transform spawnPosition = GetSpawnPosition();
+            //SpawnController.instance.spawnPoints[myNumberInRoom];
+
+            SpawnPlayer(spawnPosition);
         }
+
+        //if (PV.IsMine)
+        //{
+        //    Invoke("SpawnPlayer", 0.3f); // Changed
+        //}
     }
 
-    private void SpawnPlayer()
+    private Transform GetSpawnPosition()
     {
-        Transform spawnPosition = PickRandomSpawn(playerSpawnPositions);
+        if (PlayerPrefs.GetInt("SpawnMode") == 0)
+        {
+            Debug.Log("Custom Matchmaking Spawn");
+            return SpawnController.instance.spawnPoints[myNumberInRoom];
+        }
+        else
+        {
+            Debug.Log("Quick Start Spawn");
+            return PickRandomSpawn(playerSpawnPositions);
+        }
+        //Transform spawnPosition = PickRandomSpawn(playerSpawnPositions);
+    }
+
+    private void SpawnPlayer(Transform spawnPosition)
+    {
         SpawnAvatar(spawnPosition);
         SpawnBall();
         ConnectCameraToAvatar();
@@ -101,15 +149,4 @@ public class PhotonPlayer : MonoBehaviour
             myAvatar.transform.rotation = resetTransform.rotation;
         }
     }
-
-    //private Transform FindChild(Transform parent, string name)
-    //{
-    //    for (int i = 0; i < parent.childCount; i++)
-    //    {
-    //        Transform t = parent.GetChild(i);
-    //        if (t.name == name)
-    //            return t;
-    //    }
-    //    return null;
-    //}
 }

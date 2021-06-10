@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
@@ -14,8 +15,9 @@ public class CollisionChecker : MonoBehaviour
         {
             isReady = false;
             this.GetComponentInParent<Player>().IncreaseEnergy();
-            DeleteEnergy(other);
-            Invoke("MakeReady", 0.1f); // Damit ein EnergyBall nicht öfters registriert wird
+            PV.RPC("DeleteEnergy", RpcTarget.MasterClient, other.GetComponent<PhotonView>().ViewID, other.GetComponent<PhotonView>().Owner);
+            //DeleteEnergy(other);
+            Invoke("MakeReady", 0.5f); // Damit ein EnergyBall nicht öfters registriert wird
         }
     }
 
@@ -23,9 +25,21 @@ public class CollisionChecker : MonoBehaviour
     {
         isReady = true;
     }
-    
-    private void DeleteEnergy(Collider collider)
+
+    [PunRPC]
+    public void DeleteEnergy(int viewID, Photon.Realtime.Player owner)
     {
-        PhotonNetwork.Destroy(collider.gameObject);
+        if (owner == PV.Owner || PhotonNetwork.IsMasterClient)
+        {
+            //Debug.Log(PV.Owner);
+            //Debug.Log(PhotonNetwork.IsMasterClient);
+            
+            if (PhotonView.Find(viewID) != null)
+            {
+                //Debug.Log(PhotonView.Find(viewID).gameObject);
+                GameObject target = PhotonView.Find(viewID).gameObject;
+                PhotonNetwork.Destroy(target);
+            }
+        }
     }
 }

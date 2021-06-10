@@ -5154,6 +5154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8324790207182963071}
+  - component: {fileID: 8324790207182963028}
   m_Layer: 0
   m_Name: PlayerSpawnPoints
   m_TagString: PlayerSpawnPoints
@@ -5197,6 +5198,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8324790207182963028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324790207182963025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8e951179f3e4127940c3d069fd9e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 8324790207182963065}
+  - {fileID: 8324790207182963064}
+  - {fileID: 8324790207182963067}
+  - {fileID: 8324790207182963070}
+  - {fileID: 2073037245}
 --- !u!4 &8324790207182963064
 Transform:
   m_ObjectHideFlags: 0

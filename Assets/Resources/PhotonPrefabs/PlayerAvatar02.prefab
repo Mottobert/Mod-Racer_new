@@ -1494,7 +1494,7 @@ Rigidbody:
   m_GameObject: {fileID: 2877999007097071249}
   serializedVersion: 2
   m_Mass: 500
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 2877999007748279065}
-  motorTorque: 1200
+  motorTorque: 2000
   maxSteer: 20
 --- !u!114 &2877999007097071248
 MonoBehaviour:
@@ -1596,14 +1596,7 @@ MonoBehaviour:
   ballSpawn: {fileID: 2271018673489561193}
   carConfigurationIndex: 0
   allCars: {fileID: 7664597369518241283, guid: 82311671063034f41ad77f183eefa3f7, type: 3}
-  wheelFrontLeft: {fileID: 2877999006256307388}
-  wheelFrontRight: {fileID: 2877999006732239786}
-  wheelBackLeft: {fileID: 2877999007483097196}
-  wheelBackRight: {fileID: 2877999007493454761}
-  wheelPositionFrontNarrow: {fileID: 0}
-  wheelPositionBackNarrow: {fileID: 0}
-  wheelPositionFrontWide: {fileID: 0}
-  wheelPositionBackWide: {fileID: 0}
+  uiTargetController: {fileID: 0}
 --- !u!114 &5265772870126080812
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -278,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850258990694335878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 3.14, z: -0.53}
+  m_LocalPosition: {x: -0.08, y: 2.67, z: -0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3726809669717878132}
@@ -1446,7 +1446,7 @@ Rigidbody:
   m_GameObject: {fileID: 3726809669717878142}
   serializedVersion: 2
   m_Mass: 500
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1520,8 +1520,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 3726809669033232630}
-  motorTorque: 1200
+  motorTorque: 2000
   maxSteer: 20
+  maxSpeed: 25
+  playerSpeed: 0
 --- !u!114 &3726809669717878143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,13 +1805,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3726809669834912643}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3726809669717878136}
   skidmarksController: {fileID: 0}
+  carController: {fileID: 3726809669717878137}
 --- !u!1 &3726809669858375750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,13 +1899,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3726809669858375750}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3726809669717878136}
   skidmarksController: {fileID: 0}
+  carController: {fileID: 3726809669717878137}
 --- !u!1 &3726809669930794883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,13 +2074,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3726809670049267781}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3726809669717878136}
   skidmarksController: {fileID: 0}
+  carController: {fileID: 3726809669717878137}
 --- !u!1 &3726809670305768894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,13 +2249,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3726809670625615699}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3726809669717878136}
   skidmarksController: {fileID: 0}
+  carController: {fileID: 3726809669717878137}
 --- !u!1 &3726809670632343487
 GameObject:
   m_ObjectHideFlags: 0
