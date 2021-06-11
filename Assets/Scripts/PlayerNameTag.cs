@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerNameTag : MonoBehaviourPun
 {
     [SerializeField]
-    private Text nameText;
+    public Text nameText;
 
     void Start()
     {

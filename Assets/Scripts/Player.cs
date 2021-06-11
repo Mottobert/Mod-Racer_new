@@ -48,6 +48,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject buttonMod2;
 
+    public bool activePlayer = true;
+
+    [SerializeField]
+    private GameObject playCanvas;
+    [SerializeField]
+    private GameObject spectatorCanvas;
+
     void Start()
     {
         //Debug.Log(PV.IsMine);
@@ -206,7 +213,14 @@ public class Player : MonoBehaviour
     {
         DenyPlayerInputs();
         carController.ResetVelocity();
-        inputController.ResetDirection();
-        inputController.ResetSteerInput();
+
+        activePlayer = false;
+        playCanvas.SetActive(false);
+        playCanvas.GetComponent<CanvasGroup>().interactable = false;
+        playCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        playCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        spectatorCanvas.SetActive(true);
+        spectatorCanvas.GetComponent<CanvasGroup>().interactable = true;
+        spectatorCanvas.GetComponent<CanvasGroup>().alpha = 1;
     }
 }
