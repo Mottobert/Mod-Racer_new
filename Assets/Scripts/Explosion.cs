@@ -34,7 +34,7 @@ public class Explosion : MonoBehaviour
 
             if (rb != null)
             {
-                if (rb.gameObject.GetComponent<Shield>() && rb.gameObject.GetComponent<Shield>().active || rb.gameObject.GetComponent<Player>() && rb == rb.gameObject.GetComponent<Player>().ball.GetComponent<Rigidbody>())
+                if ((rb.gameObject.GetComponent<Shield>() && rb.gameObject.GetComponent<Shield>().active) || (rb.gameObject.GetComponent<Player>() && rb.gameObject.GetComponent<Player>().ball && rb == rb.gameObject.GetComponent<Player>().ball.GetComponent<Rigidbody>()))
                 {
                     Debug.Log("Shield blocked Explosion");
                     return;

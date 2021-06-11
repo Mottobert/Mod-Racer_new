@@ -45,7 +45,7 @@ public class WheelSkid : MonoBehaviour {
 		//Debug.Log(carController);
 		if (carController != null && waitCount > 10)
 		{
-			Debug.Log(carController.GetVelocity());
+			//Debug.Log(carController.GetVelocity());
 			if (carController.GetVelocity() > 8 || carController.GetVelocity() < 1)
 			{ 
 				if (wheelCollider.GetGroundHit(out wheelHitInfo))

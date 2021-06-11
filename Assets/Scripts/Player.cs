@@ -41,6 +41,13 @@ public class Player : MonoBehaviour
 
     public UITargetController uiTargetController;
 
+    private bool resetButtonActive = true;
+
+    [SerializeField]
+    private GameObject buttonMod1;
+    [SerializeField]
+    private GameObject buttonMod2;
+
     void Start()
     {
         //Debug.Log(PV.IsMine);
@@ -99,7 +106,7 @@ public class Player : MonoBehaviour
 
     public void PlayerLostBall()
     {
-        if(playerLifes > 1)
+        if (playerLifes > 1)
         {
             playerLostLabel.text = "Du hast deinen Ball verloren!";
             playerLostBall = true;
@@ -110,7 +117,7 @@ public class Player : MonoBehaviour
             ResetTimer();
 
             //Invoke("ResetPlayerPositionWithBall", 3f);
-        } else if(playerLifes == 1)
+        } else if (playerLifes == 1)
         {
             playerLifes--;
             UpdatePlayerLifesLabel();
@@ -131,10 +138,12 @@ public class Player : MonoBehaviour
     }
 
     public void ResetPlayerPosition()
-    {
-        inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(playerLostBall);
-        carController.ResetVelocity();
-        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    { 
+        if(resetButtonActive){
+            inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(playerLostBall);
+            carController.ResetVelocity();
+            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
 
     public void ResetPlayerPositionWithBall()
@@ -174,6 +183,9 @@ public class Player : MonoBehaviour
     {
         inputController.allowInputs = false;
         Invoke("ResetPlayerInputs", 0.2f);
+        resetButtonActive = false;
+        buttonMod1.GetComponent<SelectModButton>().DisableMod();
+        buttonMod2.GetComponent<SelectModButton>().DisableMod();
     }
 
     private void ResetPlayerInputs()
@@ -185,6 +197,9 @@ public class Player : MonoBehaviour
     private void AllowPlayerInputs()
     {
         inputController.allowInputs = true;
+        resetButtonActive = true;
+        buttonMod1.GetComponent<SelectModButton>().EnableMod();
+        buttonMod2.GetComponent<SelectModButton>().EnableMod();
     }
 
     private void DisablePlayer()

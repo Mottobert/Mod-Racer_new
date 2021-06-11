@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Nitro : MonoBehaviour
@@ -13,6 +14,14 @@ public class Nitro : MonoBehaviour
     private float duration = 1f;
     [SerializeField]
     private int cost = 5;
+
+    [SerializeField]
+    private ParticleSystem nitroParticleSystem1;
+    [SerializeField]
+    private ParticleSystem nitroParticleSystem2;
+
+    [SerializeField]
+    private GameObject player;
 
     private void Start()
     {
@@ -31,15 +40,33 @@ public class Nitro : MonoBehaviour
     {
         if (this.gameObject.GetComponent<Player>().energy >= cost)
         {
+            player.GetComponent<PhotonView>().RPC("ActivateNitroParticleSystemForPlayer", RpcTarget.All, player.GetComponent<PhotonView>().ViewID);
+            ActivateNitroParticleSystem();
             this.gameObject.GetComponent<Player>().energy = this.gameObject.GetComponent<Player>().energy - cost;
             this.gameObject.GetComponent<Player>().UpdateEnergyLabel();
             nitro = true;
-            Invoke("DeactivateNitro", duration);
+            
         }
     }
 
     private void DeactivateNitro()
     {
         nitro = false;
+        nitroParticleSystem1.Stop();
+        nitroParticleSystem2.Stop();
+    }
+
+    private void ActivateNitroParticleSystem()
+    {
+        nitroParticleSystem1.Play();
+        nitroParticleSystem2.Play();
+        Invoke("DeactivateNitro", duration);
+    }
+
+    [PunRPC]
+    public void ActivateNitroParticleSystemForPlayer(int viewID)
+    {
+        PhotonView.Find(viewID).gameObject.GetComponent<Nitro>().ActivateNitroParticleSystem();
+        //player.GetComponent<Nitro>().ActivateNitroParticleSystem();
     }
 }

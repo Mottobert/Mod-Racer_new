@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Vibrate : MonoBehaviour
@@ -10,6 +11,9 @@ public class Vibrate : MonoBehaviour
     [SerializeField]
     private float intensity = 1.5f;
 
+    [SerializeField]
+    private ParticleSystem electricityParticleSystem;
+
     private bool shieldActive = false;
 
     private void Start()
@@ -17,15 +21,25 @@ public class Vibrate : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
+    [PunRPC]
+    public void ActivateVibrationExternal(int viewID)
+    {
+        //Debug.Log("Trigger Vibrate");
+        PhotonView.Find(viewID).gameObject.GetComponent<Vibrate>().ActivateVibration();
+    }
+
     public void ActivateVibration()
     {
         vibration = true;
+        electricityParticleSystem.Play();
         Invoke("DeactivateVibration", 1f);
     }
 
     public void DeactivateVibration()
     {
         vibration = false;
+        electricityParticleSystem.Stop();
+        //electricityParticleSystem.Clear();
     }
 
     private void FixedUpdate()

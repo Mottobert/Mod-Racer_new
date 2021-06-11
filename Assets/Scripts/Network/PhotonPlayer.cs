@@ -17,6 +17,7 @@ public class PhotonPlayer : MonoBehaviour
     private GameObject avatarCamera;
 
     private GameObject playerSpawnPositions;
+    private Transform playerSpawnPosition;
 
     private void Awake()
     {
@@ -64,10 +65,11 @@ public class PhotonPlayer : MonoBehaviour
 
         if (PV.IsMine)
         {
-            Transform spawnPosition = GetSpawnPosition();
+            playerSpawnPosition = GetSpawnPosition();
             //SpawnController.instance.spawnPoints[myNumberInRoom];
 
-            SpawnPlayer(spawnPosition);
+            //SpawnPlayer(spawnPosition);
+            Invoke("SpawnPlayer", 0.3f);
         }
 
         //if (PV.IsMine)
@@ -91,9 +93,9 @@ public class PhotonPlayer : MonoBehaviour
         //Transform spawnPosition = PickRandomSpawn(playerSpawnPositions);
     }
 
-    private void SpawnPlayer(Transform spawnPosition)
+    private void SpawnPlayer()
     {
-        SpawnAvatar(spawnPosition);
+        SpawnAvatar(playerSpawnPosition);
         SpawnBall();
         ConnectCameraToAvatar();
         ConnectBallToAvatar();

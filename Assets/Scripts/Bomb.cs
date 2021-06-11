@@ -6,15 +6,20 @@ public class Bomb : MonoBehaviour
 {
     private bool throwBomb = false;
     public Vector3 forward;
+    public float explosionTimer = 1f;
+    public ParticleSystem explosionParticleSystem;
+    public MeshRenderer bombMesh;
 
     private void Start()
     {
-        Invoke("Explode", 1);
+        Invoke("Explode", explosionTimer);
     }
 
     private void Explode()
     {
         this.gameObject.GetComponent<Explosion>().Explode();
+        bombMesh.GetComponent<MeshRenderer>().enabled = false;
+        explosionParticleSystem.Play();
     }
 
     public void Throw()
