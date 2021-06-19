@@ -36,6 +36,6 @@ public class PfuetzeDrop : MonoBehaviour
 
     private void DeletePfuetze()
     {
-        Destroy(pfuetzeInstance);
+        PhotonNetwork.Destroy(pfuetzeInstance);
     }
 }

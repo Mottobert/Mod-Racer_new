@@ -4,6 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class InputController : MonoBehaviour
 {
@@ -45,10 +46,14 @@ public class InputController : MonoBehaviour
     [SerializeField]
     public InputMaster controls;
 
+    [SerializeField]
+    public GameObject tireSmoke;
+
     private void Awake()
     {
         if (!PV.IsMine)
         {
+            
             this.gameObject.SetActive(false);
         }
     }
@@ -60,6 +65,8 @@ public class InputController : MonoBehaviour
             ActivateCamera();
 
             controlMode = touch;
+
+            tireSmoke.GetComponent<VisualEffect>().Stop();
         }
     }
 
@@ -175,6 +182,7 @@ public class InputController : MonoBehaviour
         {
             //Debug.Log("Gas Pressed");
             direction = 1;
+            tireSmoke.GetComponent<VisualEffect>().Play();
         }
     }
 
@@ -184,6 +192,7 @@ public class InputController : MonoBehaviour
         {
             //Debug.Log("Reverse Pressed");
             direction = -1;
+            tireSmoke.GetComponent<VisualEffect>().Play();
         }
     }
 
@@ -194,6 +203,7 @@ public class InputController : MonoBehaviour
             //Debug.Log("Reset");
             direction = 0;
             ThrottleInput = 0;
+            tireSmoke.GetComponent<VisualEffect>().Stop();
         }
     }
 
@@ -233,6 +243,16 @@ public class InputController : MonoBehaviour
             //Debug.Log(inputVec);
             SteerInput = inputVec.x;
             ThrottleInput = inputVec.y;
+            
+
+            if(ThrottleInput == 0)
+            {
+                tireSmoke.GetComponent<VisualEffect>().Stop();
+            }
+            else
+            {
+                tireSmoke.GetComponent<VisualEffect>().Play();
+            }
         }
     }
 

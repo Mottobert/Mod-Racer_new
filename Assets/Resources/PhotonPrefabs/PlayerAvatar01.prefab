@@ -13481,7 +13481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 7243385449678165798}
   motorTorque: 2000
-  maxSteer: 20
+  maxSteer: 35
   maxSpeed: 25
   playerSpeed: 0
 --- !u!114 &7243385448993471151
@@ -13586,7 +13586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bomb: {fileID: 4303274000681834925, guid: 5c6657e95290f45e0990ceb73ee3526f, type: 3}
   bombThrowPosition: {fileID: 7243385449250459869}
-  power: 500
+  power: 400
   cost: 0
 --- !u!114 &2503552808010839605
 MonoBehaviour:

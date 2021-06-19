@@ -14,19 +14,18 @@ public class SpectatorMode : MonoBehaviour
     private string spectatorName;
     private int currentPlayer = 0;
     public List<GameObject> activePlayers = new List<GameObject>();
-    
 
-    // Start is called before the first frame update
-    void Start()
+    public void GetAllPlayers()
     {
+        Debug.Log("GetAllPlayers");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-        foreach(GameObject p in players)
+        foreach (GameObject p in players)
         {
-            if (p.GetComponent<Player>().activePlayer)
-            {
+            //if(p != inputController.player.gameObject)
+            //{
                 activePlayers.Add(p);
-            }
+            //}
         }
 
         SetCurrentPlayerTarget();

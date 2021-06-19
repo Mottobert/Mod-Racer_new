@@ -42,7 +42,7 @@ public class EnergyBallSpawner : MonoBehaviour
 
     private void PlaceEnergyBall(int index)
     {
-        GameObject Ball = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "EnergyBall"), spawners[index].transform.position, spawners[index].transform.rotation);
+        GameObject Ball = PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "EnergyBall"), spawners[index].transform.position, spawners[index].transform.rotation);
 
         Ball.GetComponent<EnergyBallOnDelete>().spawner = spawners[index];
         Ball.GetComponent<EnergyBallOnDelete>().spawners = this.gameObject;

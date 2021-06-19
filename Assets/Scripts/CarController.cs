@@ -54,7 +54,6 @@ public class CarController : MonoBehaviour
         {
             return 0;
         }
-        
     }
 
     public void ClampMaxSpeed()

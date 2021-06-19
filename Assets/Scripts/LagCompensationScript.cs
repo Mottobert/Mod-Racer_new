@@ -42,7 +42,7 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
 
             Vector3 lagDistance = myRigidbody.position - networkPosition;
 
-            if (lagDistance.magnitude > 3f)
+            if (lagDistance.magnitude > 1f)
             {
                 newPosition = networkPosition;
                 lagDistance = Vector3.zero;

@@ -65,7 +65,6 @@ public class PhotonPlayer : MonoBehaviour
 
         if (PV.IsMine)
         {
-            playerSpawnPosition = GetSpawnPosition();
             //SpawnController.instance.spawnPoints[myNumberInRoom];
 
             //SpawnPlayer(spawnPosition);
@@ -95,10 +94,11 @@ public class PhotonPlayer : MonoBehaviour
 
     private void SpawnPlayer()
     {
+        playerSpawnPosition = GetSpawnPosition();
         SpawnAvatar(playerSpawnPosition);
-        SpawnBall();
+        //SpawnBall();
         ConnectCameraToAvatar();
-        ConnectBallToAvatar();
+        //ConnectBallToAvatar();
     }
 
     private void SpawnAvatar(Transform playerSpawn)
@@ -146,7 +146,7 @@ public class PhotonPlayer : MonoBehaviour
             myAvatar.transform.position = resetTransform.position;
             if (!lostBall)
             {
-                myBall.transform.position = myAvatar.GetComponent<Player>().ballSpawn.transform.position;
+                //myAvatar.GetComponent<Player>().ball.transform.position = myAvatar.GetComponent<Player>().ballSpawn.transform.position;
             }
             myAvatar.transform.rotation = resetTransform.rotation;
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
@@ -55,6 +56,6 @@ public class Explosion : MonoBehaviour
     private void DisableExplode()
     {
         explode = false;
-        Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 }

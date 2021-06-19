@@ -96,4 +96,38 @@ public class SlipperyController : MonoBehaviour
         SetWheelsAsymptoteSlip(defaultAsymptoteSlip);
         SetWheelsAsymptoteValue(defaultAsymptoteValue);
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pfuetze")
+        {
+            //Debug.Log(other.gameObject);
+            if (this.GetComponentInParent<Shield>().active)
+            {
+                Debug.Log("Shield blocked Slippery");
+                return;
+            }
+            Debug.Log("Slippery");
+            SetWheelsSlipperyOnEnter();
+        }
+        else
+        {
+            ResetWheelsSlipperyOnExit();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Pfuetze")
+        {
+            if (this.GetComponentInParent<Shield>().active)
+            {
+                Debug.Log("Shield blocked Not Slippery");
+                return;
+            }
+            Debug.Log("Not Slippery");
+            ResetWheelsSlipperyOnExit();
+        }
+    }
 }

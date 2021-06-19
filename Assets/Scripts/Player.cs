@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour
     public GameObject ball;
 
     public GameObject ballSpawn;
+    [SerializeField]
+    private GameObject schale;
 
     private CarController carController;
 
@@ -55,12 +58,23 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject spectatorCanvas;
 
+    [SerializeField]
+    private GameObject spawnCollider;
+
+    private Collider[] colliders;
+    private List<Collider> nonTriggerColliders = new List<Collider>();
+
+    private bool invisible = true;
+
     void Start()
     {
+        
+
         //Debug.Log(PV.IsMine);
         //Debug.Log(PV.Owner);
         if (PV.IsMine)
         {
+            Debug.Log("Start invisible " + invisible);
             playerName = PlayerPrefs.GetString("PlayerName");
             UpdateEnergyLabel();
             UpdatePlayerNameLabel();
@@ -69,20 +83,183 @@ public class Player : MonoBehaviour
             carController = GetComponent<CarController>();
         }
 
+
+        // Collect all Colliders of Player
+        colliders = gameObject.GetComponentsInChildren<Collider>();
+
+        foreach (Collider c in colliders)
+        {
+            //if (!c.isTrigger)
+            //{
+            //    nonTriggerColliders.Add(c);
+            //    Debug.Log(c);
+            //}
+
+            if(c.name != "SlipperyController" && c.name != "SpawnCollider" && c.name != "BallContainerTrigger")
+            {
+                nonTriggerColliders.Add(c);
+                //Debug.Log(c);
+            }
+        }
+
+        if (PV.IsMine)
+        {
+            PV.RPC("SetPlayerInvisibleForAll", RpcTarget.All, PV.ViewID);
+            SetPlayerInvisible();
+        }
+
+        if (!PV.IsMine)
+        {
+            //PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
+            SetPlayerVisible();
+        }
+
+
+        //Debug.Log("colliders " + colliders.Length);
+
+
+
         //if (PhotonNetwork.IsMasterClient)
         //{
         //    Debug.Log(PV.Owner);
         //    GameObject.Find("EnergyBallSpawnerPoints").GetComponent<EnergyBallSpawner>().PlaceRandomEnergyBalls(3);
         //}
+
+        if (PV.IsMine)
+        {
+            Debug.Log("After Start invisible " + invisible);
+        }
     }
+
+    
+
+    [PunRPC]
+    public void SetPlayerInvisibleForAll(int viewID)
+    {
+        PhotonView.Find(viewID).gameObject.GetComponent<Player>().SetPlayerInvisible();
+    }
+
+    [PunRPC]
+    public void SetPlayerVisibleForAll(int viewID)
+    {
+        Debug.Log("Visible for all " + viewID);
+        PhotonView.Find(viewID).gameObject.GetComponent<Player>().SetPlayerVisible();
+    }
+
+    public void SetPlayerInvisible()
+    {
+        foreach (Collider c in nonTriggerColliders)
+        {
+            if (c.name != "WheelColliderLeftFront" && c.name != "WheelColliderRightFront" && c.name != "WheelColliderLeftBack" && c.name != "WheelColliderRightBack" && c.name != "SpawnCube")
+            {
+                c.isTrigger = true;
+                //Debug.Log(c);
+            }
+        }
+        
+        ChangeAlpha(gameObject.GetComponent<MeshRenderer>().material, 0.5f);
+        ChangeAlpha(schale.GetComponent<MeshRenderer>().material, 0.5f);
+
+        invisible = true;
+        invisibleCounter = 0;
+
+        if (PV.IsMine)
+        {
+            schale.GetComponentInChildren<BallContainer>().active = false;
+        }
+
+        //Debug.Log("Non Trigger Colliders " + nonTriggerColliders.Count);
+    }
+
+    public void SetPlayerVisible()
+    {
+        foreach (Collider c in nonTriggerColliders)
+        {
+            if (c.name != "WheelColliderLeftFront" && c.name != "WheelColliderRightFront" && c.name != "WheelColliderLeftBack" && c.name != "WheelColliderRightBack" && c.name != "SpawnCube")
+            {
+                c.isTrigger = false;
+                //if (!PV.IsMine)
+                //{
+                //    Debug.Log(c.gameObject.GetComponentInChildren<InputController>().PV.Owner);
+                //}
+            }
+        }
+
+        ChangeAlpha(gameObject.GetComponent<MeshRenderer>().material, 1f);
+        ChangeAlpha(schale.GetComponent<MeshRenderer>().material, 1f);
+        invisible = false;
+
+        if (PV.IsMine)
+        {
+            schale.GetComponentInChildren<BallContainer>().active = true;
+        }
+    }
+
+    public void ChangeAlpha(Material mat, float alphaVal)
+    {
+        Color oldColor = gameObject.GetComponent<MeshRenderer>().material.color;
+        Color newColor = new Color(oldColor.r, oldColor.g, oldColor.b, alphaVal);
+
+        mat.SetColor("_Color", newColor);
+    }
+
+    int invisibleCounter = 0;
 
     void Update()
     {
+        //if (PV.IsMine)
+        //{
+        //    Debug.Log("ActivePlayer " + activePlayer);
+        //
+        //    Debug.Log("PV " + PV.IsMine);
+        //
+        //    Debug.Log("isBlocked " + !spawnCollider.GetComponent<SpawnCollisionChecker>().isBlocked);
+        //
+        //    Debug.Log("Invisible " + invisible);
+        //
+        //    Debug.Log("Ball " + ball);
+        //
+        //    Debug.Log("Counter " + invisibleCounter);
+        //}
+        
+
+        if (PV.IsMine && !spawnCollider.GetComponent<SpawnCollisionChecker>().isBlocked && invisible && invisibleCounter > 20 && activePlayer)
+        {
+            Debug.Log("Not Intersecting with other Player");
+
+            if (ball != null)
+            {
+                ball.transform.position = ballSpawn.transform.position;
+            }
+            else
+            {
+                Debug.Log("SpawnBall");
+                ball = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Ball"), ballSpawn.transform.position, Quaternion.identity);
+            }
+
+            PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
+            SetPlayerVisible();
+        }
+
+        //if (!PV.IsMine && invisibleCounter < 20)
+        //{
+        //    //Debug.Log("Set Other Player Visible");
+        //    PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
+        //    SetPlayerVisible();
+        //}
+
         if (PV.IsMine)
         {
             carController.Steer = inputController.SteerInput;
             carController.Throttle = inputController.ThrottleInput;
         }
+
+        if (invisibleCounter < 21)
+        {
+            invisibleCounter++;
+        }
+
+
     }
 
     public void IncreaseEnergy()
@@ -130,6 +307,7 @@ public class Player : MonoBehaviour
             UpdatePlayerLifesLabel();
             playerLostLabel.text = "Du hast alle deine Leben verloren!";
             DisablePlayer();
+            SetPlayerInvisible();
         }
     }
 
@@ -147,6 +325,11 @@ public class Player : MonoBehaviour
     public void ResetPlayerPosition()
     { 
         if(resetButtonActive){
+            if (PV.IsMine)
+            {
+                PV.RPC("SetPlayerInvisibleForAll", RpcTarget.All, PV.ViewID);
+                SetPlayerInvisible();
+            }
             inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(playerLostBall);
             carController.ResetVelocity();
             ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -176,7 +359,13 @@ public class Player : MonoBehaviour
         }
         else if(resetTimer == 1)
         {
-            ResetPlayerPositionWithBall();
+            if (PV.IsMine)
+            {
+                PV.RPC("SetPlayerInvisibleForAll", RpcTarget.All, PV.ViewID);
+                SetPlayerInvisible();
+            }
+            Invoke("ResetPlayerPositionWithBall", 0.2f);
+            //ResetPlayerPositionWithBall();
             resetTimer = 4;
             resetTimerLabel.text = "";
 
@@ -220,6 +409,7 @@ public class Player : MonoBehaviour
         playCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
         playCanvas.GetComponent<CanvasGroup>().alpha = 0;
         spectatorCanvas.SetActive(true);
+        spectatorCanvas.GetComponent<SpectatorMode>().GetAllPlayers();
         spectatorCanvas.GetComponent<CanvasGroup>().interactable = true;
         spectatorCanvas.GetComponent<CanvasGroup>().alpha = 1;
     }

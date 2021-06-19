@@ -15,6 +15,7 @@ TagManager:
   - AllCars
   - Mod
   - UIController
+  - Pfuetze
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - Ground
   - Mine
   - PostProcessing
-  - 
+  - SpawnCube
   - 
   - 
   - 
