@@ -64,17 +64,15 @@ public class Player : MonoBehaviour
     private Collider[] colliders;
     private List<Collider> nonTriggerColliders = new List<Collider>();
 
-    private bool invisible = true;
+    public bool invisible = true;
 
     void Start()
     {
-        
-
         //Debug.Log(PV.IsMine);
         //Debug.Log(PV.Owner);
         if (PV.IsMine)
         {
-            Debug.Log("Start invisible " + invisible);
+            //Debug.Log("Start invisible " + invisible);
             playerName = PlayerPrefs.GetString("PlayerName");
             UpdateEnergyLabel();
             UpdatePlayerNameLabel();
@@ -104,13 +102,14 @@ public class Player : MonoBehaviour
 
         if (PV.IsMine)
         {
-            PV.RPC("SetPlayerInvisibleForAll", RpcTarget.All, PV.ViewID);
+            PV.RPC("SetPlayerInvisibleForAll", RpcTarget.AllBufferedViaServer, PV.ViewID);
             SetPlayerInvisible();
         }
 
         if (!PV.IsMine)
         {
             //PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
+            Debug.Log("Set Other Player Visible");
             SetPlayerVisible();
         }
 
@@ -127,7 +126,7 @@ public class Player : MonoBehaviour
 
         if (PV.IsMine)
         {
-            Debug.Log("After Start invisible " + invisible);
+            //Debug.Log("After Start invisible " + invisible);
         }
     }
 
@@ -221,7 +220,14 @@ public class Player : MonoBehaviour
         //
         //    Debug.Log("Counter " + invisibleCounter);
         //}
-        
+
+
+        //if (!PV.IsMine)
+        //{
+        //    Debug.Log("Blocked " + spawnCollider.GetComponent<SpawnCollisionChecker>().isBlocked);
+        //}
+
+
 
         if (PV.IsMine && !spawnCollider.GetComponent<SpawnCollisionChecker>().isBlocked && invisible && invisibleCounter > 20 && activePlayer)
         {
@@ -237,14 +243,14 @@ public class Player : MonoBehaviour
                 ball = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Ball"), ballSpawn.transform.position, Quaternion.identity);
             }
 
-            PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
+            PV.RPC("SetPlayerVisibleForAll", RpcTarget.AllBufferedViaServer, PV.ViewID);
             SetPlayerVisible();
         }
 
-        //if (!PV.IsMine && invisibleCounter < 20)
+        //if (!PV.IsMine && !invisible)
         //{
-        //    //Debug.Log("Set Other Player Visible");
-        //    PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
+        //    Debug.Log("Set Other Player Visible");
+        //    //PV.RPC("SetPlayerVisibleForAll", RpcTarget.All, PV.ViewID);
         //    SetPlayerVisible();
         //}
 
@@ -327,13 +333,18 @@ public class Player : MonoBehaviour
         if(resetButtonActive){
             if (PV.IsMine)
             {
-                PV.RPC("SetPlayerInvisibleForAll", RpcTarget.All, PV.ViewID);
+                PV.RPC("SetPlayerInvisibleForAll", RpcTarget.AllBufferedViaServer, PV.ViewID);
                 SetPlayerInvisible();
             }
-            inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(playerLostBall);
-            carController.ResetVelocity();
-            ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            Invoke("ResetPlayerPositionDelay", 0.1f);
         }
+    }
+
+    private void ResetPlayerPositionDelay()
+    {
+        inputController.playerCamera.GetComponentInParent<PhotonPlayer>().ResetPlayer(playerLostBall);
+        carController.ResetVelocity();
+        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public void ResetPlayerPositionWithBall()
@@ -361,7 +372,7 @@ public class Player : MonoBehaviour
         {
             if (PV.IsMine)
             {
-                PV.RPC("SetPlayerInvisibleForAll", RpcTarget.All, PV.ViewID);
+                PV.RPC("SetPlayerInvisibleForAll", RpcTarget.AllBufferedViaServer, PV.ViewID);
                 SetPlayerInvisible();
             }
             Invoke("ResetPlayerPositionWithBall", 0.2f);

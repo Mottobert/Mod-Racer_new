@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6671714020276976679}
   m_Layer: 18
   m_Name: SpawnCube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,8 +172,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4721742, y: 1.5698041, z: 4.1035767}
-  m_Center: {x: -0, y: 0, z: -0.01063478}
+  m_Size: {x: 3.4488225, y: 3.542616, z: 4.753614}
+  m_Center: {x: -0, y: 0.7386484, z: -0.010634899}
 --- !u!1 &417146888959322246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,6 +2149,7 @@ MonoBehaviour:
   playCanvas: {fileID: 417146888959322246}
   spectatorCanvas: {fileID: 4877040583470863513}
   spawnCollider: {fileID: 6840294245001643848}
+  invisible: 1
 --- !u!114 &6727029815246180547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19611,26 +19612,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3726809669717878132}
     m_Modifications:
-    - target: {fileID: 449760364944502657, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 998033560970180235, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1705528756486199774, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
       propertyPath: m_Name
       value: Schale
       objectReference: {fileID: 0}
-    - target: {fileID: 1705528756486199775, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1705528756486199776, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ffa6ddab3cf6f4ad8a263080b92c056b, type: 2}
     - target: {fileID: 1705528756486199778, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -19675,77 +19660,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1705528756486199779, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1705528756486199780, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1705528756486199781, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1705528756486199782, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2522083830427436333, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3080835618857402340, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294434878701848398, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5245739721050029338, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640546536637595728, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6371576917696920439, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3726809669717878142}
-    - target: {fileID: 6844367534943098888, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 3726809669717878142}
-    - target: {fileID: 6844367534943098888, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: ballContainer
-      value: 
-      objectReference: {fileID: 5707680767374704165}
-    - target: {fileID: 7335702305921293208, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8720225848722708244, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
---- !u!1 &2599431273017192282 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1705528756486199774, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
-  m_PrefabInstance: {fileID: 3726809670215136900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2599431273017192294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1705528756486199778, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
   m_PrefabInstance: {fileID: 3726809670215136900}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5707680767374704165 stripped
+--- !u!1 &2599431273017192282 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8974980044793006241, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1705528756486199774, guid: f5e6cff945fdd42ce9a111f50dd3d067, type: 3}
   m_PrefabInstance: {fileID: 3726809670215136900}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7311102671209503770

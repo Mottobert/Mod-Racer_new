@@ -5,12 +5,14 @@ using UnityEngine;
 public class SpawnCollisionChecker : MonoBehaviour
 {
     public bool isBlocked = false;
+    private int collisionCount = 0;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             isBlocked = true;
+            collisionCount++;
         }
     }
 
@@ -18,7 +20,12 @@ public class SpawnCollisionChecker : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            isBlocked = false;
+            collisionCount--;
+
+            if(collisionCount == 0)
+            {
+                isBlocked = false;
+            }
         }
     }
 }

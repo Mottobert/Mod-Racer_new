@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class UITargetController : MonoBehaviour
@@ -26,11 +27,15 @@ public class UITargetController : MonoBehaviour
         {
             foreach (GameObject t in targets)
             {
-                if (t.GetComponent<Player>().PV.IsMine && t != player)
+                //Debug.Log("IsMine " + t.GetComponent<PhotonView>());
+                if(t.GetComponent<PhotonView>() != null)
                 {
-                    Debug.Log(t.GetComponent<Player>().inputController.playerCamera.isActiveAndEnabled);
-                    Camera mainCameraPlayer = t.GetComponent<Player>().inputController.playerCamera;
-                    t.GetComponent<Player>().uiTargetController.AddTargetIndicator(player, mainCameraPlayer);
+                    if (t.GetComponent<PhotonView>().IsMine && t != player)
+                    {
+                        //Debug.Log(t.GetComponent<Player>().inputController.playerCamera.isActiveAndEnabled);
+                        Camera mainCameraPlayer = t.GetComponent<Player>().inputController.playerCamera;
+                        t.GetComponent<Player>().uiTargetController.AddTargetIndicator(player, mainCameraPlayer);
+                    }
                 }
             }
         }
