@@ -294,14 +294,31 @@ public class Player : MonoBehaviour
         resetTimerLabel.text = "" + resetTimer;
     }
 
+    [PunRPC]
+    public void UpdatePlayerLifesForAll(int viewID, int playerLifes)
+    {
+        PhotonView.Find(viewID).gameObject.GetComponent<Player>().SetPlayerLifes(playerLifes);
+    }
+
+    private void SetPlayerLifes(int playerLifes)
+    {
+        if (!PV.IsMine)
+        {
+            this.playerLifes = playerLifes;
+            gameObject.GetComponent<PlayerNameTag>().UpdateLifesLabel(playerLifes);
+        }
+    }
+
     public void PlayerLostBall()
     {
         if (playerLifes > 1)
         {
-            playerLostLabel.text = "Du hast deinen Ball verloren!";
+            //playerLostLabel.text = "Du hast deinen Ball verloren!";
             playerLostBall = true;
 
             playerLifes--;
+            PV.RPC("UpdatePlayerLifesForAll", RpcTarget.AllBufferedViaServer, PV.ViewID, playerLifes);
+            //UpdatePlayerLifesForAll(PV.ViewID, playerLifes);
             UpdatePlayerLifesLabel();
 
             ResetTimer();
@@ -310,6 +327,7 @@ public class Player : MonoBehaviour
         } else if (playerLifes == 1)
         {
             playerLifes--;
+            PV.RPC("UpdatePlayerLifesForAll", RpcTarget.AllBufferedViaServer, PV.ViewID, playerLifes);
             UpdatePlayerLifesLabel();
             playerLostLabel.text = "Du hast alle deine Leben verloren!";
             DisablePlayer();

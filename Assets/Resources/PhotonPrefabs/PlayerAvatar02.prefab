@@ -1797,7 +1797,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d885399d48a5b4d5e87bd40e84ce4197, type: 2}
+  - {fileID: 2100000, guid: de400187e54a949c1986f6df7a6da23e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1954,6 +1954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 6897409094806142662}
+  lifesText: {fileID: 0}
 --- !u!114 &2877999007097071258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13684,6 +13685,7 @@ MonoBehaviour:
   spectatorNameLabel: {fileID: 3280759156790430983}
   inputController: {fileID: 2877999007823720077}
   activePlayers: []
+  leaderboard: {fileID: 0}
 --- !u!225 &3337801763490994238
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -13693,7 +13695,7 @@ CanvasGroup:
   m_GameObject: {fileID: 7314008141468984547}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &7824425122528124946

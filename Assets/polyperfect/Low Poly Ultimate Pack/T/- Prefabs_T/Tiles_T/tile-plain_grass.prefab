@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33082723281722470}
   - component: {fileID: 23960203046291078}
   - component: {fileID: 64221511155677964}
+  - component: {fileID: 3538549639816274241}
   m_Layer: 10
   m_Name: tile-plain_grass
   m_TagString: Untagged
@@ -91,8 +92,21 @@ MeshCollider:
   m_GameObject: {fileID: 1034700540366262}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: d804e487d15c34c80a9ea4d8f2505b3f, type: 3}
+--- !u!65 &3538549639816274241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034700540366262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.000017, y: 5.8141036, z: 30.000017}
+  m_Center: {x: 0, y: -3.0929434, z: 0}
