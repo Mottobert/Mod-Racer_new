@@ -12,6 +12,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     [SerializeField]
     public RectTransform parent;
 
+    public GameObject modName;
     public string modText;
 
     private RectTransform rectTransform;
@@ -21,7 +22,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     private void Awake()
     {
-        modText = GetComponentInChildren<Text>().text;
+        modText = modName.GetComponent<Text>().text;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -30,9 +31,20 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         //Debug.Log("OnBeginDrag");
         droppedInModSlot = false;
-        canvasGroup.alpha = 0.6f;
+        canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = false;
         SetAllOthersInactive();
+        ShowDescription();
+    }
+
+    private void ShowDescription()
+    {
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void HideDescription()
+    {
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -52,6 +64,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         SetAllOthersActive();
+        HideDescription();
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -11,7 +11,7 @@ public class TrainTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("TriggerTrain", 30f);
+        Invoke("TriggerTrain", 60f);
     }
 
     private void TriggerTrain()
@@ -21,7 +21,7 @@ public class TrainTrigger : MonoBehaviour
             StartTrainDelayed();
         }
 
-        float randomDelay = Random.Range(80f, 120f);
+        float randomDelay = Random.Range(100f, 160f);
         Debug.Log(randomDelay);
 
         Invoke("TriggerTrain", randomDelay);

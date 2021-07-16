@@ -41,6 +41,7 @@ public class Explosion : MonoBehaviour
                     return;
                 }
 
+                //Debug.Log(rb);
                 rb.AddExplosionForce(explosionPower, explosionPos, explosionRadius, explosionUpforce, ForceMode.Impulse);
             }
         }

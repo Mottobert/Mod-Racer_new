@@ -111,10 +111,11 @@ public class SlipperyController : MonoBehaviour
             Debug.Log("Slippery");
             SetWheelsSlipperyOnEnter();
         }
-        else
-        {
-            ResetWheelsSlipperyOnExit();
-        }
+        //else if(other.tag == "Ground")
+        //{
+        //    Debug.Log(other.tag);
+        //    ResetWheelsSlipperyOnExit();
+        //}
     }
 
     private void OnTriggerExit(Collider other)

@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2877999007097071255}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 2877999007097071254}
 --- !u!1 &2877999006732239786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2877999007097071255}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 2877999007097071254}
 --- !u!1 &2877999007012234833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shockRadius: 7
-  cost: 0
+  cost: 1
   electricityParticleSystem: {fileID: 365493908242908005}
   player: {fileID: 2877999007097071249}
 --- !u!114 &4836245394702860953
@@ -1996,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37fcc4918f4f4726b6e210426e126a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 1100
+  intensity: 2000
   electricityParticleSystem: {fileID: 365493908242908005}
 --- !u!114 &2877999007097071260
 MonoBehaviour:
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   bomb: {fileID: 4303274000681834925, guid: 5c6657e95290f45e0990ceb73ee3526f, type: 3}
   bombThrowPosition: {fileID: 2877999007907515618}
   power: 400
-  cost: 0
+  cost: 1
 --- !u!114 &7046849645311781386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,7 +2028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mine: {fileID: 7349024608016310861, guid: 221712fd964924d77836f20ac7fbb309, type: 3}
   dropPosition: {fileID: 2877999006152667760}
-  cost: 0
+  cost: 1
 --- !u!114 &5610361872951838699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,8 +2043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfuetze: {fileID: 4126159774204649667, guid: 514b4b71b5b1c4ba39f7b7b47aa00a45, type: 3}
   dropPosition: {fileID: 2877999006152667760}
-  cost: 0
-  despawnTime: 5
+  cost: 1
+  despawnTime: 20
 --- !u!114 &8774135910017830327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2059,7 +2059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 500
   duration: 0.5
-  cost: 0
+  cost: 1
   nitroParticleSystem1: {fileID: 3489881647807787856}
   nitroParticleSystem2: {fileID: 6679674725392224192}
   player: {fileID: 2877999007097071249}
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   active: 0
   shieldObject: {fileID: 6054762664577434800}
   duration: 3
-  cost: 0
+  cost: 1
 --- !u!114 &3556012108030948876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2877999007097071255}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 2877999007097071254}
 --- !u!1 &2877999007493454761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,7 +2384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2877999007097071255}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 2877999007097071254}
 --- !u!1 &2877999007717132140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,6 +2631,8 @@ MonoBehaviour:
   draggingJoystick: 0
   allowInputs: 1
   tireSmoke: {fileID: 3026926965094461950}
+  mod1: {fileID: 1264142792683731508}
+  mod2: {fileID: 1070011593617949786}
 --- !u!114 &5328336698317391317
 MonoBehaviour:
   m_ObjectHideFlags: 0

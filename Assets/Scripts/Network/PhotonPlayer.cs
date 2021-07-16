@@ -43,7 +43,7 @@ public class PhotonPlayer : MonoBehaviour
 
         allPlayers = PhotonNetwork.PlayerList;
 
-        Debug.Log(PV.ViewID);
+        //Debug.Log(PV.ViewID);
 
         string viewIDString = "" + PV.ViewID;
         string firstDigitOfViewID = viewIDString.Substring(0, 1);
@@ -51,7 +51,7 @@ public class PhotonPlayer : MonoBehaviour
 
         myNumberInRoom = firstDigitOfViewIDInt;
 
-        Debug.Log(firstDigitOfViewIDInt);
+        //Debug.Log(firstDigitOfViewIDInt);
 
         //foreach (Photon.Realtime.Player p in allPlayers)
         //{

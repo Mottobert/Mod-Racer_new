@@ -264,8 +264,6 @@ public class Player : MonoBehaviour
         {
             invisibleCounter++;
         }
-
-
     }
 
     public void IncreaseEnergy()
@@ -305,7 +303,7 @@ public class Player : MonoBehaviour
         if (!PV.IsMine)
         {
             this.playerLifes = playerLifes;
-            gameObject.GetComponent<PlayerNameTag>().UpdateLifesLabel(playerLifes);
+            //gameObject.GetComponent<PlayerNameTag>().UpdateLifesLabel(playerLifes);
         }
     }
 
@@ -317,7 +315,7 @@ public class Player : MonoBehaviour
             playerLostBall = true;
 
             playerLifes--;
-            PV.RPC("UpdatePlayerLifesForAll", RpcTarget.AllBufferedViaServer, PV.ViewID, playerLifes);
+            //PV.RPC("UpdatePlayerLifesForAll", RpcTarget.AllBufferedViaServer, PV.ViewID, playerLifes);
             //UpdatePlayerLifesForAll(PV.ViewID, playerLifes);
             UpdatePlayerLifesLabel();
 
@@ -327,7 +325,7 @@ public class Player : MonoBehaviour
         } else if (playerLifes == 1)
         {
             playerLifes--;
-            PV.RPC("UpdatePlayerLifesForAll", RpcTarget.AllBufferedViaServer, PV.ViewID, playerLifes);
+            //PV.RPC("UpdatePlayerLifesForAll", RpcTarget.AllBufferedViaServer, PV.ViewID, playerLifes);
             UpdatePlayerLifesLabel();
             playerLostLabel.text = "Du hast alle deine Leben verloren!";
             DisablePlayer();
@@ -391,7 +389,7 @@ public class Player : MonoBehaviour
             if (PV.IsMine)
             {
                 PV.RPC("SetPlayerInvisibleForAll", RpcTarget.AllBufferedViaServer, PV.ViewID);
-                SetPlayerInvisible();
+                //SetPlayerInvisible();
             }
             Invoke("ResetPlayerPositionWithBall", 0.2f);
             //ResetPlayerPositionWithBall();
@@ -430,6 +428,8 @@ public class Player : MonoBehaviour
     private void DisablePlayer()
     {
         DenyPlayerInputs();
+        PV.RPC("ChangeLayerToInvisibleForAll", RpcTarget.AllBufferedViaServer, PV.ViewID);
+        //gameObject.layer = LayerMask.NameToLayer("InvisibleCar");
         carController.ResetVelocity();
 
         activePlayer = false;
@@ -441,5 +441,16 @@ public class Player : MonoBehaviour
         spectatorCanvas.GetComponent<SpectatorMode>().GetAllPlayers();
         spectatorCanvas.GetComponent<CanvasGroup>().interactable = true;
         spectatorCanvas.GetComponent<CanvasGroup>().alpha = 1;
+    }
+
+    public void ChangeLayerToInvisible()
+    {
+        gameObject.layer = LayerMask.NameToLayer("InvisibleCar");
+    }
+
+    [PunRPC]
+    public void ChangeLayerToInvisibleForAll(int viewID)
+    {
+        PhotonView.Find(viewID).gameObject.GetComponent<Player>().ChangeLayerToInvisible();
     }
 }

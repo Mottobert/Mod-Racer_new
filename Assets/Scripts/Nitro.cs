@@ -45,7 +45,6 @@ public class Nitro : MonoBehaviour
             this.gameObject.GetComponent<Player>().energy = this.gameObject.GetComponent<Player>().energy - cost;
             this.gameObject.GetComponent<Player>().UpdateEnergyLabel();
             nitro = true;
-            
         }
     }
 

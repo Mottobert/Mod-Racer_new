@@ -22,7 +22,7 @@ public class PlayerNameTag : MonoBehaviourPun
 
         SetName();
 
-        UpdateLifesLabel(3);
+        //UpdateLifesLabel(3);
     }
 
     private void SetName()

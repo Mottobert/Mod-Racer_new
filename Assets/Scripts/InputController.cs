@@ -49,6 +49,16 @@ public class InputController : MonoBehaviour
     [SerializeField]
     public GameObject tireSmoke;
 
+    [SerializeField]
+    public GameObject mod1;
+
+    private bool mod1Active = true;
+
+    [SerializeField]
+    public GameObject mod2;
+
+    private bool mod2Active = true;
+
     private void Awake()
     {
         if (!PV.IsMine)
@@ -134,6 +144,16 @@ public class InputController : MonoBehaviour
             //{
             //    player.GetComponent<MineDrop>().DropMine();
             //}
+
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                OnMod1();
+            }
+
+            if (Input.GetKey(KeyCode.C))
+            {
+                OnMod2();
+            }
         }
     }
 
@@ -256,21 +276,37 @@ public class InputController : MonoBehaviour
         }
     }
 
-    //public void OnBomb() // Wird vom neuen Input System aufgerufen, wenn die left-shift Taste gedrückt wird
-    //{
-    //    if (PV.IsMine)
-    //    {
-    //        player.GetComponent<BombThrow>().ThrowBomb();
-    //    }
-    //}
-    //
-    //public void OnDrop() // Wird vom neuen Input System aufgerufen, wenn die c Taste gedrückt wird
-    //{
-    //    if (PV.IsMine)
-    //    {
-    //        player.GetComponent<MineDrop>().DropMine();
-    //    }
-    //}
+
+
+    public void OnMod1() // Wird vom neuen Input System aufgerufen, wenn die left-shift Taste gedrückt wird
+    {
+        if (PV.IsMine && mod1Active)
+        {
+            mod1.GetComponent<SelectModButton>().ActivateMod();
+            mod1Active = false;
+            Invoke("ReaktivateMod1", 0.2f);
+        }
+    }
+
+    private void ReaktivateMod1()
+    {
+        mod1Active = true;
+    }
+    
+    public void OnMod2() // Wird vom neuen Input System aufgerufen, wenn die c Taste gedrückt wird
+    {
+        if (PV.IsMine)
+        {
+            mod2.GetComponent<SelectModButton>().ActivateMod();
+            mod2Active = false;
+            Invoke("ReaktivateMod2", 0.2f);
+        }
+    }
+
+    private void ReaktivateMod2()
+    {
+        mod2Active = true;
+    }
 
     private void TouchControl()
     {

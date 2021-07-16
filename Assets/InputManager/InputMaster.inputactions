@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Bomb",
+                    "name": "Mod1",
                     "type": "PassThrough",
                     "id": "cbd702ff-6dc5-4512-bcda-67fd13e5332e",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Drop",
+                    "name": "Mod2",
                     "type": "PassThrough",
                     "id": "4a7c4040-cc15-4d18-be22-41036907a399",
                     "expectedControlType": "Button",
@@ -101,7 +101,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Bomb",
+                    "action": "Mod1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -112,7 +112,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Drop",
+                    "action": "Mod2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

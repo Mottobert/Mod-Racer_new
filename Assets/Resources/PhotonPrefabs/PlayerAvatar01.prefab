@@ -17827,14 +17827,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243385448085192835}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7243385448993471144}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 7243385448993471145}
 --- !u!1 &7243385448095242351
 GameObject:
   m_ObjectHideFlags: 0
@@ -18036,14 +18036,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243385448678842261}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7243385448993471144}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 7243385448993471145}
 --- !u!1 &7243385448797331539
 GameObject:
   m_ObjectHideFlags: 0
@@ -18211,14 +18211,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243385448852973462}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7243385448993471144}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 7243385448993471145}
 --- !u!1 &7243385448875912275
 GameObject:
   m_ObjectHideFlags: 0
@@ -18305,14 +18305,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243385448875912275}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1848074eee38bc247a4f6de3aa81ca60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7243385448993471144}
   skidmarksController: {fileID: 0}
-  carController: {fileID: 0}
+  carController: {fileID: 7243385448993471145}
 --- !u!1 &7243385448993471150
 GameObject:
   m_ObjectHideFlags: 0
@@ -18592,7 +18592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shockRadius: 7
-  cost: 0
+  cost: 1
   electricityParticleSystem: {fileID: 8290779187958507923}
   player: {fileID: 7243385448993471150}
 --- !u!114 &29506464220290726
@@ -18607,7 +18607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37fcc4918f4f4726b6e210426e126a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 1100
+  intensity: 1500
   electricityParticleSystem: {fileID: 8290779187958507923}
 --- !u!114 &7243385448993471139
 MonoBehaviour:
@@ -18624,7 +18624,7 @@ MonoBehaviour:
   bomb: {fileID: 4303274000681834925, guid: 5c6657e95290f45e0990ceb73ee3526f, type: 3}
   bombThrowPosition: {fileID: 7243385449250459869}
   power: 400
-  cost: 0
+  cost: 1
 --- !u!114 &2503552808010839605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18639,7 +18639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mine: {fileID: 7349024608016310861, guid: 221712fd964924d77836f20ac7fbb309, type: 3}
   dropPosition: {fileID: 7243385448048340559}
-  cost: 0
+  cost: 1
 --- !u!114 &1056404239611272148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18654,8 +18654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfuetze: {fileID: 4126159774204649667, guid: 514b4b71b5b1c4ba39f7b7b47aa00a45, type: 3}
   dropPosition: {fileID: 7243385448048340559}
-  cost: 0
-  despawnTime: 5
+  cost: 1
+  despawnTime: 20
 --- !u!114 &4230822296523313544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18670,7 +18670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 500
   duration: 0.5
-  cost: 0
+  cost: 1
   nitroParticleSystem1: {fileID: 3996553264499668587}
   nitroParticleSystem2: {fileID: 6604722157938534097}
   player: {fileID: 7243385448993471150}
@@ -18689,7 +18689,7 @@ MonoBehaviour:
   active: 0
   shieldObject: {fileID: 1689921855359555727}
   duration: 3
-  cost: 0
+  cost: 1
 --- !u!114 &8227063056839191091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19003,6 +19003,8 @@ MonoBehaviour:
   draggingJoystick: 0
   allowInputs: 1
   tireSmoke: {fileID: 1281804478666989746}
+  mod1: {fileID: 460434422399739802}
+  mod2: {fileID: 6552828897487566860}
 --- !u!114 &758598796248439274
 MonoBehaviour:
   m_ObjectHideFlags: 0

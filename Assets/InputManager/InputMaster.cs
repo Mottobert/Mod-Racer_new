@@ -35,7 +35,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Bomb"",
+                    ""name"": ""Mod1"",
                     ""type"": ""PassThrough"",
                     ""id"": ""cbd702ff-6dc5-4512-bcda-67fd13e5332e"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +43,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Drop"",
+                    ""name"": ""Mod2"",
                     ""type"": ""PassThrough"",
                     ""id"": ""4a7c4040-cc15-4d18-be22-41036907a399"",
                     ""expectedControlType"": ""Button"",
@@ -114,7 +114,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Bomb"",
+                    ""action"": ""Mod1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -125,7 +125,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Drop"",
+                    ""action"": ""Mod2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -847,8 +847,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_EnableTouch = m_Player.FindAction("EnableTouch", throwIfNotFound: true);
-        m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
-        m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
+        m_Player_Mod1 = m_Player.FindAction("Mod1", throwIfNotFound: true);
+        m_Player_Mod2 = m_Player.FindAction("Mod2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_EnableTouch = m_UI.FindAction("EnableTouch", throwIfNotFound: true);
@@ -916,16 +916,16 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_EnableTouch;
-    private readonly InputAction m_Player_Bomb;
-    private readonly InputAction m_Player_Drop;
+    private readonly InputAction m_Player_Mod1;
+    private readonly InputAction m_Player_Mod2;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @EnableTouch => m_Wrapper.m_Player_EnableTouch;
-        public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
-        public InputAction @Drop => m_Wrapper.m_Player_Drop;
+        public InputAction @Mod1 => m_Wrapper.m_Player_Mod1;
+        public InputAction @Mod2 => m_Wrapper.m_Player_Mod2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -941,12 +941,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @EnableTouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableTouch;
                 @EnableTouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableTouch;
                 @EnableTouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableTouch;
-                @Bomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBomb;
-                @Bomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBomb;
-                @Bomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBomb;
-                @Drop.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop;
-                @Drop.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop;
-                @Drop.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop;
+                @Mod1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMod1;
+                @Mod1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMod1;
+                @Mod1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMod1;
+                @Mod2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMod2;
+                @Mod2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMod2;
+                @Mod2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMod2;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -957,12 +957,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @EnableTouch.started += instance.OnEnableTouch;
                 @EnableTouch.performed += instance.OnEnableTouch;
                 @EnableTouch.canceled += instance.OnEnableTouch;
-                @Bomb.started += instance.OnBomb;
-                @Bomb.performed += instance.OnBomb;
-                @Bomb.canceled += instance.OnBomb;
-                @Drop.started += instance.OnDrop;
-                @Drop.performed += instance.OnDrop;
-                @Drop.canceled += instance.OnDrop;
+                @Mod1.started += instance.OnMod1;
+                @Mod1.performed += instance.OnMod1;
+                @Mod1.canceled += instance.OnMod1;
+                @Mod2.started += instance.OnMod2;
+                @Mod2.performed += instance.OnMod2;
+                @Mod2.canceled += instance.OnMod2;
             }
         }
     }
@@ -1153,8 +1153,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnEnableTouch(InputAction.CallbackContext context);
-        void OnBomb(InputAction.CallbackContext context);
-        void OnDrop(InputAction.CallbackContext context);
+        void OnMod1(InputAction.CallbackContext context);
+        void OnMod2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -9,6 +9,9 @@ public class EnergyBallSpawner : MonoBehaviour
     public GameObject energyBall;
     private List<GameObject> spawners = new List<GameObject>();
 
+    [SerializeField]
+    private int activeSpawnersNumber;
+
     private PhotonView PV;
 
     // Start is called before the first frame update
@@ -25,7 +28,7 @@ public class EnergyBallSpawner : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PlaceRandomEnergyBalls(3);
+            PlaceRandomEnergyBalls(activeSpawnersNumber);
         }
     }
 
