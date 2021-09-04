@@ -13,6 +13,11 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
     [SerializeField]
     private PhotonView photonView;
 
+    [SerializeField]
+    private float lagDistanceTreshold = 2f;
+    [SerializeField]
+    private float lagRotationTreshold = 10f;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         //Debug.Log("Sending");
@@ -41,12 +46,20 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
             Quaternion newRotation = Quaternion.RotateTowards(myRigidbody.rotation, networkRotation, Time.fixedDeltaTime * 100.0f);
 
             Vector3 lagDistance = myRigidbody.position - networkPosition;
+            Vector3 lagRotation = myRigidbody.rotation.eulerAngles - networkRotation.eulerAngles;
 
-            if (lagDistance.magnitude > 1f)
+            if (lagDistance.magnitude > lagDistanceTreshold)
             {
                 newPosition = networkPosition;
                 lagDistance = Vector3.zero;
             }
+
+            if (lagRotation.magnitude > lagRotationTreshold)
+            {
+                newRotation = networkRotation;
+                lagRotation = Vector3.zero;
+            }
+
             myRigidbody.position = newPosition;
             myRigidbody.rotation = newRotation;
         }

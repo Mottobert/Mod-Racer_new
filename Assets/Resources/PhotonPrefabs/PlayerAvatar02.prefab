@@ -2116,6 +2116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 2877999007097071255}
   photonView: {fileID: 3556012108030948876}
+  lagDistanceTreshold: 2
+  lagRotationTreshold: 10
 --- !u!1 &2877999007421168748
 GameObject:
   m_ObjectHideFlags: 0

@@ -151,3 +151,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 538827517363309048}
   photonView: {fileID: 538827517363309051}
+  lagDistanceTreshold: 2
+  lagRotationTreshold: 20
