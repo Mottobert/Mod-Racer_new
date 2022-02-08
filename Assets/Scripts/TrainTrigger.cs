@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using Photon.Pun;
 using UnityEngine;
 
@@ -8,40 +9,48 @@ public class TrainTrigger : MonoBehaviour
     [SerializeField]
     private GameObject train;
 
+    [SerializeField]
+    private MMFeedbacks trainFeedback;
+
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("TriggerTrain", 60f);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            SetRandomTrainTimer();
+        }
     }
 
+    [ContextMenu("StartTrain")]
     private void TriggerTrain()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            StartTrainDelayed();
+            StartTrain();
         }
+    }
 
+    private void SetRandomTrainTimer()
+    {
         float randomDelay = Random.Range(100f, 160f);
-        Debug.Log(randomDelay);
 
         Invoke("TriggerTrain", randomDelay);
-        //TriggerTrain(randomDelay);
-    }
-
-    private void StartTrainDelayed()
-    {
-        gameObject.GetComponent<PhotonView>().RPC("StartTrainForAll", RpcTarget.All);
-    }
-
-    [PunRPC]
-    public void StartTrainForAll()
-    {
-        StartTrain();
     }
 
     private void StartTrain()
     {
-        //train.GetComponent<Animator>().StopPlayback();
-        train.GetComponent<Animator>().Play("Train_Crossing", -1, 0f);
+        gameObject.GetComponent<PhotonView>().RPC("StartTrainAnimationForAll", RpcTarget.AllBufferedViaServer);
+    }
+
+    [PunRPC]
+    public void StartTrainAnimationForAll()
+    {
+        StartTrainAnimation();
+    }
+
+    private void StartTrainAnimation()
+    {
+        train.GetComponent<Animator>().SetTrigger("activate");
+        trainFeedback.PlayFeedbacks();
     }
 }

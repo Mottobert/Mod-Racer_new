@@ -114,7 +114,7 @@ public class PhotonPlayer : MonoBehaviour
     private void ConnectCameraToAvatar()
     {
         myAvatar.GetComponentInChildren<InputController>().playerCamera = avatarCamera.GetComponentInChildren<Camera>();
-        avatarCamera.GetComponent<CameraFollow>().Target = myAvatar.transform;
+        avatarCamera.GetComponent<CameraFollow>().Target = myAvatar.GetComponentInChildren<Player>().transform;
 
         avatarCamera.GetComponent<Camera>().gameObject.SetActive(false);
     }
@@ -143,12 +143,12 @@ public class PhotonPlayer : MonoBehaviour
         if (PV.IsMine)
         {
             Transform resetTransform = PickRandomSpawn(playerSpawnPositions);
-            myAvatar.transform.position = resetTransform.position;
+            myAvatar.GetComponentInChildren<Player>().transform.position = resetTransform.position;
             if (!lostBall)
             {
                 //myAvatar.GetComponent<Player>().ball.transform.position = myAvatar.GetComponent<Player>().ballSpawn.transform.position;
             }
-            myAvatar.transform.rotation = resetTransform.rotation;
+            myAvatar.GetComponentInChildren<Player>().transform.rotation = resetTransform.rotation;
         }
     }
 }

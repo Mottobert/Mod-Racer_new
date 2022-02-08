@@ -19,6 +19,7 @@ public class Bomb : MonoBehaviour
     {
         this.gameObject.GetComponent<Explosion>().Explode();
         bombMesh.GetComponent<MeshRenderer>().enabled = false;
+        explosionParticleSystem.gameObject.transform.rotation = Quaternion.identity;
         explosionParticleSystem.Play();
     }
 
