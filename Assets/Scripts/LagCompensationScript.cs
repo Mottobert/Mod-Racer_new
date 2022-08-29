@@ -16,7 +16,16 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
     [SerializeField]
     private float lagDistanceTreshold = 2f;
     [SerializeField]
-    private float lagRotationTreshold = 10f;
+    private float lagRotationTreshold = 30f;
+
+    public float smoothPos = 5.0f;
+    public float smoothRot = 5.0f;
+
+    private void Awake()
+    {
+        PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SerializationRate = 10;
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -33,7 +42,7 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
             networkRotation = (Quaternion)stream.ReceiveNext();
             myRigidbody.velocity = (Vector3)stream.ReceiveNext();
 
-            float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.timestamp));
+            float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
             networkPosition += (this.myRigidbody.velocity * lag);
         }
     }
@@ -42,8 +51,8 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
     {
         if (!photonView.IsMine)
         {
-            Vector3 newPosition = Vector3.MoveTowards(myRigidbody.position, networkPosition, Time.fixedDeltaTime);
-            Quaternion newRotation = Quaternion.RotateTowards(myRigidbody.rotation, networkRotation, Time.fixedDeltaTime * 100.0f);
+            Vector3 newPosition = Vector3.Lerp(myRigidbody.position, networkPosition, smoothPos * Time.fixedDeltaTime);
+            Quaternion newRotation = Quaternion.Lerp(myRigidbody.rotation, networkRotation, smoothRot * Time.fixedDeltaTime);
 
             Vector3 lagDistance = myRigidbody.position - networkPosition;
             Vector3 lagRotation = myRigidbody.rotation.eulerAngles - networkRotation.eulerAngles;
@@ -54,8 +63,13 @@ public class LagCompensationScript : MonoBehaviour, IPunObservable
                 lagDistance = Vector3.zero;
             }
 
-            if (lagRotation.magnitude > lagRotationTreshold)
+            //Debug.Log(Mathf.Abs(lagRotation.y));
+            //Debug.Log("Network: " + networkRotation.y);
+            //Debug.Log("New: " + newRotation.y);
+
+            if (Mathf.Abs(lagRotation.y) > lagRotationTreshold)
             {
+                //Debug.Log("Test");
                 newRotation = networkRotation;
                 lagRotation = Vector3.zero;
             }

@@ -153,3 +153,5 @@ MonoBehaviour:
   photonView: {fileID: 538827517363309051}
   lagDistanceTreshold: 2
   lagRotationTreshold: 20
+  smoothPos: 5
+  smoothRot: 5

@@ -42,6 +42,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8940062851251923893, guid: 9def0b529a63ab1459b66b405a0054e8, type: 3}
+      propertyPath: smoothRot
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940062851251923893, guid: 9def0b529a63ab1459b66b405a0054e8, type: 3}
+      propertyPath: lagRotationTreshold
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9205953662748382485, guid: 9def0b529a63ab1459b66b405a0054e8, type: 3}
       propertyPath: m_Name
       value: Car
